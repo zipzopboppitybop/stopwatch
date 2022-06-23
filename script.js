@@ -3,20 +3,22 @@ const start = document.getElementById("startBtn");
 const stop = document.getElementById("stopBtn");
 const reset = document.getElementById("resetBtn");
 let timer = document.getElementById("time");
-count = 0;
-
+let seconds = 0;
+let intervalId;
 //buttons
 start.addEventListener('click', function() {
-    setInterval(function() {
-        count ++;
-        timer.textContent = count;
-    })
-})
-stop.addEventListener('click', function() {
-    
-})
-reset.addEventListener('click', function() {
-    console.log("reset");
+    intervalId = setInterval(function() { 
+        seconds++;
+        timer.textContent = seconds;
+    },1000);
 })
 
-//time
+stop.addEventListener('click', function() {
+    clearInterval(intervalId)
+})
+
+reset.addEventListener('click', function() {
+    clearInterval(intervalId)
+    seconds = 0
+    timer.textContent = 0;
+})
